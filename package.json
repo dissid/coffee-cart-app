@@ -1,21 +1,10 @@
 {
   "name": "coffee-cart-app",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dissid/coffee-cart-app.git"
-  },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Dmytro Sydorenko",
   "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/dissid/coffee-cart-app/issues"
-  },
-  "homepage": "https://github.com/dissid/coffee-cart-app#readme",
   "devDependencies": {
     "@playwright/test": "^1.63.0",
     "@types/node": "^26.4.1"
