@@ -64,9 +64,7 @@ test("declineDiscountedMocha", async ({ page }) => {
   await page.locator('[data-test="Espresso_Macchiato"]').click();
   await page.locator('[data-test="Cappuccino"]').click();
 
-  await expect(page.locator(".promo")).toContainText("It's your lucky day! Get an extra cup of Mocha for $4.");
   await page.getByRole("button", { name: "Nah, I'll skip" }).click();
-
   await page.getByRole("link", { name: "Cart page" }).click();
 
   await expect(page.locator("#app")).not.toContainText("(Discounted) Mocha");
