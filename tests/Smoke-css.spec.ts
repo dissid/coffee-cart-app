@@ -20,7 +20,7 @@ test.describe("Smoke test", () => {
 
   test("updateCart", async ({ page }) => {
     await page.locator("[data-test='Cafe_Breve']").click();
-    const productPrice = await page.locator('//h4[contains(., "Cafe Breve")]/small').innerText();
+    const productPrice = await page.locator('h4:text-is("Cafe Breve")').locator("small").innerText();
 
     await page.locator("[aria-label='Cart page']").click();
     await page.locator(".list-header+.list-item [aria-label='Add one Cafe Breve']").click();
