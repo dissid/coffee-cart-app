@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => {
 
 test.describe("Smoke test", () => {
   test("placeOrder", async ({ page }) => {
-    await page.locator(".cup-body").first().click();
+    await page.locator('.cup-body[aria-label="Espresso"]').click();
     await page.locator("a[href='/cart']").click();
     await page.locator(".pay").click();
 
@@ -19,8 +19,7 @@ test.describe("Smoke test", () => {
   });
 
   test("updateCart", async ({ page }) => {
-    await page.locator('li:has(h4:text-is("Cafe Breve")) .cup-body').click();
-    const productPrice = await page.locator('h4:text-is("Cafe Breve")').locator("small").innerText();
+    await page.locator('.cup-body[aria-label="Cafe Breve"]').click();
 
     await page.locator("a[href='/cart']").click();
     await page.locator(".list-header+.list-item [aria-label='Add one Cafe Breve']").click();
@@ -30,20 +29,20 @@ test.describe("Smoke test", () => {
   });
 
   test("removeFromCart", async ({ page }) => {
-    await page.locator('[data-test="Flat_White"]').click();
-    await page.locator('[data-test="Americano"]').click();
+    await page.locator('.cup-body[aria-label="Flat White"]').click();
+    await page.locator('.cup-body[aria-label="Americano"]').click();
 
     await page.locator("a[href='/cart']").click();
-    await page.locator(".delete").first().click();
-    await page.locator(".delete").click();
+    await page.locator('.list-header + .list-item [aria-label="Remove one Americano"]').click();
+    await page.locator('.list-header + .list-item [aria-label="Remove all Flat White"]').click();
 
     await expect(page.locator(".list p")).toHaveText("No coffee, go add some.");
   });
 
   test("getDiscountedMocha", async ({ page }) => {
-    await page.locator(".cup-body").first().click();
-    await page.locator(".cup-body").first().click();
-    await page.locator(".cup-body").first().click();
+    await page.locator('.cup-body[aria-label="Espresso"]').click();
+    await page.locator('.cup-body[aria-label="Espresso Macchiato"]').click();
+    await page.locator('.cup-body[aria-label="Cappuccino"]').click();
 
     await expect(page.locator(".promo")).toContainText("It's your lucky day! Get an extra cup of Mocha for $4.");
     await page.locator(".yes").click();
@@ -55,9 +54,9 @@ test.describe("Smoke test", () => {
   });
 
   test("declineDiscountedMocha", async ({ page }) => {
-    await page.locator(".cup-body").first().click();
-    await page.locator(".cup-body").first().click();
-    await page.locator(".cup-body").first().click();
+    await page.locator('.cup-body[aria-label="Espresso"]').click();
+    await page.locator('.cup-body[aria-label="Espresso Macchiato"]').click();
+    await page.locator('.cup-body[aria-label="Cappuccino"]').click();
 
     await page.locator(".yes+button").click();
     await page.locator("a[href='/cart']").click();
