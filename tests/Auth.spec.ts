@@ -19,7 +19,7 @@ test.describe("Sign In", () => {
     await page.getByTestId("auth-submit").click();
 
     await expect(page.getByTestId("error-messages")).toHaveText("email or password неправильні");
-    await expect(page.getByText("Sign in", { exact: true })).toBeVisible;
+    await expect(page.getByTestId("auth-submit")).toBeVisible();
   });
   test("Invalid user", async ({ page }) => {
     const email = uniqueEmail();
@@ -28,7 +28,7 @@ test.describe("Sign In", () => {
     await page.getByTestId("auth-submit").click();
 
     await expect(page.getByTestId("error-messages")).toHaveText("email or password неправильні");
-    await expect(page.getByText("Sign in", { exact: true })).toBeVisible;
+    await expect(page.getByTestId("auth-submit")).toBeVisible();
   });
 });
 
@@ -71,7 +71,7 @@ test.describe("Create an account", () => {
     await page.getByTestId("auth-submit").click();
 
     await expect(page.getByTestId("error-messages")).toHaveText("body email або username вже зайняті");
-    await expect(page.getByText("Create an account", { exact: true })).toBeVisible;
+    await expect(page.getByText("Create an account", { exact: true })).toBeVisible();
   });
 
   test("Invalid data for creation", async ({ page }) => {
@@ -87,6 +87,6 @@ test.describe("Create an account", () => {
     await page.getByTestId("auth-submit").click();
 
     await expect(page.getByTestId("error-messages")).toHaveText("confirm password doesn't match");
-    await expect(page.getByText("Create an account", { exact: true })).toBeVisible;
+    await expect(page.getByText("Create an account", { exact: true })).toBeVisible();
   });
 });
