@@ -55,6 +55,14 @@ export default defineConfig({
         baseURL: "http://104.168.59.50/articles",
       },
     },
+    {
+      name: "Interaction",
+      testMatch: "**/Xpath.spec.ts",
+      use: {
+        ...devices["Desktop Chrome"],
+        baseURL: "http://104.168.59.50/laboratory/interactions",
+      },
+    },
 
     // {
     //   name: 'firefox',
