@@ -12,12 +12,16 @@ test("Select rows via checkboxes", async ({ page }) => {
 
   for (let i = 0; i < checkboxCount; i++) {
     await checkboxes.nth(i).check();
+    await expect(page.locator("//*[@data-testid='interactions-selected-count']")).toHaveText(
+      "Вибрано: " + checkboxCount,
+    );
   }
-
-  await expect(page.locator("//*[@data-testid='interactions-selected-count']")).toHaveText("Вибрано: " + checkboxCount);
 });
 
 test("Sort the table by status", async ({ page }) => {
   await page.locator("//*[@data-testid='interactions-sort-status']").click();
   await expect(page.locator("//*[@data-testid='interactions-table-row-2']//*[text()='Failed']")).toBeVisible();
+
+  await page.locator("//*[@data-testid='interactions-sort-status']").click();
+  await expect(page.locator("//*[@data-testid='interactions-table-row-2']//*[text()='Skipped']")).toBeVisible();
 });
